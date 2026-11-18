@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Halねえさんの乗務手帳｜タクシードライバーの売上・乗務管理</title>
+<meta name="description" content="Halねえさんの乗務手帳は、タクシードライバーが自分の売上と乗務時間を自分で持つための道具です。出庫・帰庫のボタンと売上入力だけで、「目標まであと○○円」「残り1乗務あたり○○円」「1日あたり○○時間」が見えます。リサーチ版は登録不要・無料で、今すぐ試せます。">
+<meta name="keywords" content="Halねえさんの乗務手帳,Halねえさん,タクシー,乗務管理,売上管理,タクシードライバー,締め日,ハンドル時間">
+<meta property="og:title" content="Halねえさんの乗務手帳｜タクシードライバーの売上・乗務管理">
+<meta property="og:description" content="出庫・帰庫のボタンと売上入力だけ。目標まであと何円、残り1乗務あたり何円、1日あたり何時間が、ひと目で見えます。リサーチ版は登録不要・無料です。">
+<meta property="og:type" content="website">
+<meta property="og:image" content="hal-neesan.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Halねえさんの乗務手帳",
+  "inLanguage": "ja",
+  "description": "タクシードライバー向けの売上・乗務管理ツール「Halねえさんの乗務手帳」の紹介ページです。"
+}
+</script>
+<style>
+:root {
+  --bg: #0b1219; --panel: #141f2a; --panel2: #1b2a38; --line: #2b3d50;
+  --fg: #f2f6fa; --muted: #9db0c3; --go: #2fbf71; --go-text: #5ee0a0;
+  --sky: #cbe6f6; --sky-ink: #0d1a27; --warn: #f5b82e;
+  --font-body: "Noto Sans JP", "Hiragino Sans", "Yu Gothic UI", "Meiryo", sans-serif;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #eef3f8; --panel: #ffffff; --panel2: #e4ecf4; --line: #c6d3e0;
+    --fg: #0d1a27; --muted: #4c6178; --go: #1c9a58; --go-text: #0f7a40;
+    --sky: #cbe6f6; --sky-ink: #0d1a27;
+    color-scheme: light;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 17px; line-height: 1.7;
+  padding: 0 max(16px, env(safe-area-inset-left, 0px)) 48px;
+  -webkit-text-size-adjust: 100%;
+}
+.page { max-width: 720px; margin: 0 auto; }
+.hero { text-align: center; padding: 32px 0 8px; }
+.hero img { width: 180px; max-width: 55vw; height: auto; }
+.hero h1 { font-size: 30px; line-height: 1.3; margin: 16px 0 8px; font-weight: 900; }
+.hero p.lead { font-size: 19px; font-weight: 700; margin: 0 0 4px; }
+.hero p.sub { color: var(--muted); margin: 0; }
+.cta { display: block; text-align: center; background: var(--go); color: #03210f;
+  font-size: 20px; font-weight: 900; text-decoration: none;
+  padding: 16px 20px; border-radius: 12px; margin: 24px 0 8px; }
+.cta small { display: block; font-size: 14px; font-weight: 700; }
+.qr { text-align: center; margin: 16px 0 8px; }
+.qr img { width: 180px; height: 180px; background: #fff; padding: 8px; border-radius: 8px; }
+.qr p { color: var(--muted); font-size: 14px; margin: 8px 0 0; }
+section { background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+  padding: 20px; margin-top: 20px; }
+section h2 { font-size: 21px; margin: 0 0 12px; font-weight: 900; }
+section h3 { font-size: 18px; margin: 20px 0 8px; font-weight: 700; }
+section p { margin: 0 0 12px; }
+section p:last-child { margin-bottom: 0; }
+.numbers { list-style: none; padding: 0; margin: 0 0 4px; }
+.numbers li { font-size: 20px; font-weight: 900; padding: 8px 0; border-bottom: 1px dashed var(--line); }
+.numbers li:last-child { border-bottom: none; }
+.numbers li span { color: var(--go-text); }
+ul.plain { margin: 0 0 12px; padding-left: 1.2em; }
+ul.plain li { margin-bottom: 6px; }
+.greet { background: var(--sky); color: var(--sky-ink); border-radius: 12px; padding: 16px 20px; margin-top: 20px; }
+.greet p { margin: 0 0 8px; font-weight: 700; }
+.greet p:last-child { margin-bottom: 0; }
+.links { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.links a { display: block; text-align: center; background: var(--panel2); color: var(--fg);
+  border: 1px solid var(--line); border-radius: 10px; padding: 14px;
+  font-weight: 700; text-decoration: none; font-size: 18px; }
+.links a small { display: block; font-size: 13px; font-weight: 500; color: var(--muted); }
+.note { color: var(--muted); font-size: 14px; }
+footer { margin-top: 28px; color: var(--muted); font-size: 14px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="hero">
+  <img src="hal-neesan.png" alt="Halねえさん">
+  <h1>Halねえさんの乗務手帳</h1>
+  <p class="lead">自分の数字を、自分で持つ。</p>
+  <p class="sub">タクシードライバーのための、売上・乗務管理の道具です。</p>
+</header>
+
+<a class="cta" href="https://hal-neesan.github.io/hal-research/">リサーチ版を今すぐ試す
+<small>登録不要・無料・インストール不要。開いたらすぐ使えます。</small></a>
+
+<div class="qr">
+  <img src="research_qr.png" alt="リサーチ版のQRコード">
+  <p>QRコードからも開けます</p>
+</div>
+
+<section>
+  <h2>Halねえさんって、なに？</h2>
+  <p>会社から渡される数字だけでは、「自分の時給がいくらか」「今月あとどれだけ走れるか」が見えません。この道具は、その見えなさを解消するためにあります。</p>
+  <p>土台は、作り手が2019年に1年間つけ続けた乗務管理のシートです。日付・売上・出庫と帰庫の時刻・ハンドル時間・時間あたり売上を、月ごとに記録した実物のシートから生まれました。</p>
+  <p>案内役のHalねえさんは、配車歴5年の27歳。OL風の制服にヘッドセットをつけた、頼れる配車係のねえさんです。</p>
+</section>
+
+<section>
+  <h2>ホーム画面の3つの数字</h2>
+  <p>開いてすぐ見えるのは、この3つだけです。</p>
+  <ul class="numbers">
+    <li>目標まであと <span>○○円</span></li>
+    <li>残り1乗務あたり <span>○○円</span></li>
+    <li>1日あたり <span>○○時間</span></li>
+  </ul>
+  <p>売上目標まであとどれだけか。残りの乗務で1回あたりいくら稼げばいいか。乗務時間のリミットまで、1日あたり何時間まで乗れるか。数字は、営業所ごとの締め日に合わせた「当月」で計算します。暦の月ではありません。</p>
+</section>
+
+<section>
+  <h2>できること</h2>
+  <ul class="plain">
+    <li><strong>毎日の手入力は、売上だけ。</strong>時刻はすべてアプリが測ります。出庫・帰庫・休憩はボタンを押すだけです。</li>
+    <li><strong>休憩もボタンひとつ。</strong>「休憩する」「休憩おわり」で記録し、ハンドル時間は「拘束時間 − 休憩時間」で出します。</li>
+    <li><strong>間違えても、直せます。</strong>出庫・帰庫の取り消し、時刻と売上の修正ができます。押し忘れたときは、あとから記録を作れる「後付け入力」があります。</li>
+    <li><strong>履歴で、去年の自分と比べられます。</strong>月ごとの記録はCSVで書き出せます。確定申告の集計にも使えます。</li>
+    <li><strong>記録は、あなたのスマホの中だけ。</strong>乗務の記録が運営側に送られることはありません。</li>
+  </ul>
+  <h3>最初の設定（1回だけ）</h3>
+  <p>締め日、売上目標、出勤予定日数、乗務時間のリミット、必要な休憩時間を入れます。勤務形態（日勤・夜勤・隔日）を選ぶと、目安の数字が入ります。自分の会社の基準に合わせて直して使ってください。</p>
+</section>
+
+<div class="greet">
+  <p>出庫のとき、Halねえさんが声をかけます。</p>
+  <p>「安全運転で、いってらっしゃい。」</p>
+  <p>帰庫のときは、「おつかれさまでした。おかえりなさい。」</p>
+  <p>表示は10秒ほどで、元の画面に戻ります。挨拶は表示と音だけで、記録には一切影響しません。</p>
+</div>
+
+<section>
+  <h2>リサーチ版について</h2>
+  <p>今お試しいただけるのは、現場の声を聞くためのリサーチ版です。登録も料金もいりません。使ってみて、よかった点・困った点を教えてください。</p>
+  <p>聞きたいのは機能のことだけです。確かめたいのは、休憩ボタンの要否、締め日や社内基準の違い、3つの数字の分かりやすさ、売上入力の手間です。</p>
+  <p>将来の製品版は、LINEのアプリになる予定です。そのときは、ここから先は有償版であることを、はっきり示します。リサーチ版の記録は、CSVで書き出して製品版へ移すことができます。</p>
+  <div class="links">
+    <a href="https://hal-neesan.github.io/hal-research/">リサーチ版を使う<small>売上・乗務管理の本体ページ</small></a>
+    <a href="https://hal-neesan.github.io/hal-research/board.html">掲示板を見る<small>感想・質問はこちらへ。公開されます</small></a>
+    <a href="https://hal-neesan.github.io/hal-research/survey.html">アンケートに答える（1分・6問）<small>どれか1問だけの回答でも送れます</small></a>
+  </div>
+  <p class="note">掲示板は公開されます。会社名、個人名、お客様の情報は書かないでください。アンケートの回答は、他の人には見えません。</p>
+</section>
+
+<footer>
+  <p>Halねえさんの乗務手帳（リサーチ版）<br>
+  リサーチ版は、製品版が出たら移行期間ののち公開を止めます。<br>
+  その前に、記録はCSVで書き出しておいてください。</p>
+</footer>
+
+</div>
+</body>
+</html>
